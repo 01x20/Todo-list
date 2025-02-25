@@ -1,21 +1,25 @@
-import { CiCirclePlus } from 'react-icons/ci';
+import { GoPencil } from 'react-icons/go';
 import styled from 'styled-components';
 
-function AddItemButton() {
+function AddItemButton({ onClick }) {
   return (
     <AddItemButtonWrapper>
-      <CiCirclePlus />
+      <button onClick={onClick}>
+        <GoPencil />
+      </button>
     </AddItemButtonWrapper>
   );
 }
 
-const AddItemButtonWrapper = styled.button`
-  outline: none;
-  border: none;
-  background: none;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 0;
+const AddItemButtonWrapper = styled.div`
+  button {
+    outline: none;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+  }
 `;
 
 export default AddItemButton;

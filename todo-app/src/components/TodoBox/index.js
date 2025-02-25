@@ -1,31 +1,28 @@
 import styled from 'styled-components';
 
-import AddItemButton from '../AddItemButton';
+import TodoCheckInput from '../TodoCheckInput';
 
-const data = [
-  {
-    id: '1',
-    todos: [],
-  },
-];
-
-function TodoBox() {
+function TodoBox({ data }) {
   return (
-    <>
-      {data ? (
+    <TodoBoxWrapper>
+      {data.length === 0 ? (
         <NoItemsWrapper>
           <NoItemsTitle>할 일을 등록해 보세요!</NoItemsTitle>
-          <AddItemButton />
         </NoItemsWrapper>
-      ) : null}
-    </>
+      ) : (
+        <TodoCheckInput data={data} />
+      )}
+    </TodoBoxWrapper>
   );
 }
+
+const TodoBoxWrapper = styled.div`
+  padding: 3rem 0;
+`;
 
 const NoItemsTitle = styled.div`
   color: #999;
   text-align: center;
-  margin-bottom: 20px;
 `;
 
 const NoItemsWrapper = styled.div`
