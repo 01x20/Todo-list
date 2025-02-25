@@ -1,16 +1,23 @@
+import { useAtomValue } from 'jotai';
 import styled from 'styled-components';
 
+import itemLengthState from '../../stores/todos/itemLengthState';
+import itemState from '../../stores/todos/itemState';
 import TodoCheckInput from '../TodoCheckInput';
 
-function TodoBox({ data }) {
+function TodoBox() {
+  const data = useAtomValue(itemState);
+  const dataLength = useAtomValue(itemLengthState);
+
+  console.log(dataLength);
   return (
     <TodoBoxWrapper>
-      {data.length === 0 ? (
+      {!dataLength ? (
+        <TodoCheckInput data={data} />
+      ) : (
         <NoItemsWrapper>
           <NoItemsTitle>할 일을 등록해 보세요!</NoItemsTitle>
         </NoItemsWrapper>
-      ) : (
-        <TodoCheckInput data={data} />
       )}
     </TodoBoxWrapper>
   );

@@ -1,13 +1,19 @@
+import { useAtomValue } from 'jotai';
 import styled from 'styled-components';
 
-function TodoCheckInput({ data }) {
+import itemState from '../../stores/todos/itemState';
+
+function TodoCheckInput() {
+  const data = useAtomValue(itemState);
+  const items = data.items;
+
   return (
     <>
-      {data.map((item, index) => (
-        <ItemsWrapper>
+      {items.map((item, index) => (
+        <ItemsWrapper key={index}>
           <input type="checkbox" placeholder="test" />
           <WriteBoxWrapper>
-            <input type="text" value={item.todos[index]} />
+            <input type="text" readOnly value={item} />
           </WriteBoxWrapper>
         </ItemsWrapper>
       ))}
