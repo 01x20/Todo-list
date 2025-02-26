@@ -11,9 +11,11 @@ function TodoCheckInput() {
     <>
       {items.map((item, index) => (
         <ItemsWrapper key={index}>
-          <input type="checkbox" placeholder="test" />
+          <CheckWrapper>
+            <input type="checkbox" placeholder="test" />
+          </CheckWrapper>
           <WriteBoxWrapper>
-            <input type="text" readOnly value={item} />
+            <input type="text" value={item} />
           </WriteBoxWrapper>
         </ItemsWrapper>
       ))}
@@ -21,30 +23,31 @@ function TodoCheckInput() {
   );
 }
 
-const ItemsWrapper = styled.label`
+const ItemsWrapper = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 0.4rem 0;
+`;
+
+const CheckWrapper = styled.label`
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  border: 1px solid #666;
+
   input[type='checkbox'] {
     display: none;
   }
 `;
 
 const WriteBoxWrapper = styled.div`
-  position: relative;
-  padding-left: 2rem;
+  width: calc(100% - 36px);
 
-  &::before {
-    position: absolute;
-    content: '';
-    width: 20px;
-    height: 20px;
-    border-radius: 3px;
-    border: 1px solid #666;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-  }
   input[type='text'] {
     width: 100%;
-    padding: 0 0.8rem;
+    padding: 0 0.3rem;
     box-sizing: border-box;
     height: 24px;
     line-height: 24px;
