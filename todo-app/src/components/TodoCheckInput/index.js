@@ -1,21 +1,39 @@
-import { useAtomValue } from 'jotai';
+import { useAtom } from 'jotai';
+import { useState } from 'react';
 import styled from 'styled-components';
 
-import itemState from '../../stores/todos/itemState';
+import itemData from '../../stores/todos/itemData';
 
 function TodoCheckInput() {
-  const data = useAtomValue(itemState);
+  const [data] = useAtom(itemData);
   const items = data.items;
+  const [check, setCheck] = useState([]);
+
+  const handleChange = (isChecked, index) => {
+    if (isChecked) {
+      setCheck((prev) => [...prev, index]);
+    } else {
+      setCheck(check.filter((el) => el !== index));
+    }
+  };
 
   return (
     <>
-      {items.map((item, index) => (
+      {items.map((data, index) => (
         <ItemsWrapper key={index}>
           <CheckWrapper>
-            <input type="checkbox" placeholder="test" />
+            <input
+              type="checkbox"
+              placeholder="test"
+              checked={check.includes(index)}
+              onChange={(e) => {
+                handleChange(e.target.checked, index);
+              }}
+            />
+            <span></span>
           </CheckWrapper>
           <WriteBoxWrapper>
-            <input type="text" value={item} />
+            <input type="text" onChange={(e) => e.target.value} value={data} />
           </WriteBoxWrapper>
         </ItemsWrapper>
       ))}
@@ -25,20 +43,30 @@ function TodoCheckInput() {
 
 const ItemsWrapper = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 10px;
   align-items: center;
   padding: 0.4rem 0;
 `;
 
 const CheckWrapper = styled.label`
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  border-radius: 3px;
-  border: 1px solid #666;
-
   input[type='checkbox'] {
     display: none;
+
+    &:checked + span {
+      background: #ddd;
+    }
+
+    &:checked ~ input[type='text'] {
+      font-weight: bold;
+    }
+  }
+
+  span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid #666;
   }
 `;
 

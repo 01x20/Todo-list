@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import styled from 'styled-components';
 
 import AddItemButton from '../components/AddItemButton';
@@ -7,7 +8,7 @@ const data = [];
 
 function TodoList() {
   return (
-    <>
+    <Suspense fallback={<div>loading...</div>}>
       <TodayInfoWrapper>
         <DayTitle>📆 2025-02-25</DayTitle>
         <AddItemButton
@@ -20,7 +21,7 @@ function TodoList() {
         />
       </TodayInfoWrapper>
       <TodoBox data={data} />
-    </>
+    </Suspense>
   );
 }
 
