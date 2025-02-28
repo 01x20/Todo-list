@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-import TodoList from './pages/TodoList';
+import TodoListPage from './pages/TodoListPage';
 
 function App() {
   return (
     <ContensWrapper>
       <TodoListWrapper>
-        <TodoList />
+        <TodoListPage />
       </TodoListWrapper>
     </ContensWrapper>
   );
@@ -23,7 +23,6 @@ const ContensWrapper = styled.div`
 
 const TodoListWrapper = styled.div`
   min-width: 560px;
-  padding: 40px;
   background: #fff;
   height: 80%;
   border-radius: 30px;
