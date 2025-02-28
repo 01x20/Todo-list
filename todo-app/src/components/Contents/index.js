@@ -7,6 +7,13 @@ function Contents() {
   const [text, setText] = useState('');
   const [items, setItems] = useState([]);
 
+  const handleEnterAdd = (e) => {
+    if (e.key === 'Enter') {
+      handleAddItem();
+      e.target.value = '';
+    }
+  };
+
   const handleAddItem = () => {
     if (text !== '') {
       const newItems = [
@@ -16,14 +23,9 @@ function Contents() {
         },
       ];
 
-      return setItems(newItems);
-    }
-  };
+      setText('');
 
-  const handleEnterAdd = (e) => {
-    if (e.key === 'Enter') {
-      handleAddItem();
-      e.target.value = '';
+      return setItems(newItems);
     }
   };
 
@@ -32,6 +34,7 @@ function Contents() {
       <AddItemWrapper>
         <Input
           type="text"
+          value={text}
           placeholder="할 일을 입력해 보세요"
           onChange={(e) => {
             setText(e.target.value);
@@ -41,7 +44,6 @@ function Contents() {
         <Button
           onClick={() => {
             handleAddItem();
-            text = '';
           }}
         >
           등록

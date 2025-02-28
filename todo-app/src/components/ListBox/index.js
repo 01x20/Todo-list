@@ -1,18 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import DeleteButton from '../DeleteButton';
 import EditButton from '../EditButton';
 
 function ListBox({ items }) {
+  const [checkList, setCheckList] = useState([]);
+
+  const handleChange = (checked, index) => {
+    if (checked) {
+      setCheckList([...checkList, index]);
+    } else {
+      setCheckList([checkList.filter((item) => item !== index)]);
+    }
+  };
+
   if (items) {
     return (
       <>
         {items.map((item, index) => (
           <React.Fragment key={index}>
             <TodoItemWrapper>
-              <ItemCheckBox />
-              <InputCheck type="checkbox" />
+              <label>
+                <InputCheck
+                  type="checkbox"
+                  readOnly
+                  onChange={(e) => {
+                    handleChange(e.target.checked, index);
+                  }}
+                  checked={checkList.includes(index)}
+                />
+                <ItemCheckBox />
+              </label>
               <InputText type="text" readOnly value={item.text} />
               <EditButton />
               <DeleteButton />
@@ -34,16 +53,20 @@ const TodoItemWrapper = styled.div`
   }
 `;
 
-const InputCheck = styled.input`
-  display: none;
-`;
-
 const ItemCheckBox = styled.div`
   width: 20px;
   height: 20px;
   border: 1px solid #666;
   border-radius: 3px;
   box-sizing: border-box;
+`;
+
+const InputCheck = styled.input`
+  display: none;
+
+  &:checked + ${ItemCheckBox} {
+    background: #aaa;
+  }
 `;
 
 const InputText = styled.input`
