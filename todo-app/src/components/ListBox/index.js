@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { FaRegTrashAlt } from 'react-icons/fa';
+import { MdOutlineEditCalendar } from 'react-icons/md';
 import styled from 'styled-components';
 
-import DeleteButton from '../DeleteButton';
-import EditButton from '../EditButton';
-
-function ListBox({ items }) {
+function ListBox({ items, setItems }) {
   const [checkList, setCheckList] = useState([]);
+  const [editIdx, setEditIdx] = useState(null);
 
   const handleChange = (checked, index) => {
     if (checked) {
@@ -13,6 +13,20 @@ function ListBox({ items }) {
     } else {
       setCheckList([checkList.filter((item) => item !== index)]);
     }
+  };
+
+  const handleEdit = (index) => {
+    setEditIdx(index);
+  };
+
+  const handleInputChange = (index, value) => {
+    const newItems = [...items];
+    newItems[index].text = value;
+    setItems(newItems);
+  };
+
+  const handleDelete = (index) => {
+    setItems((prev) => prev.filter((_, i) => i !== index));
   };
 
   if (items) {
@@ -32,9 +46,19 @@ function ListBox({ items }) {
                 />
                 <ItemCheckBox />
               </label>
-              <InputText type="text" readOnly value={item.text} />
-              <EditButton />
-              <DeleteButton />
+              <InputText
+                type="text"
+                value={item.text}
+                onChange={(e) => handleInputChange(index, e.target.value)}
+                readOnly={editIdx !== index}
+                onBlur={() => setEditIdx(null)}
+              />
+              <Button onClick={() => handleEdit(index)}>
+                <MdOutlineEditCalendar style={{ fontSize: '20px' }} />
+              </Button>
+              <Button onClick={() => handleDelete(index)}>
+                <FaRegTrashAlt style={{ fontSize: '20px' }} />
+              </Button>
             </TodoItemWrapper>
           </React.Fragment>
         ))}
@@ -79,6 +103,15 @@ const InputText = styled.input`
   padding: 0 12px;
   box-sizing: border-box;
   flex: 1;
+`;
+
+const Button = styled.button`
+  outline: none;
+  border: none;
+  background: none;
+  width: 20px;
+  height: 20px;
+  padding: 0;
 `;
 
 export default ListBox;

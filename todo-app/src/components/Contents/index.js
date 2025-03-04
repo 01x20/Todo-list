@@ -10,8 +10,8 @@ function Contents() {
   const handleEnterAdd = (e) => {
     if (e.key === 'Enter') {
       handleAddItem();
-      e.target.value = '';
     }
+    setText('');
   };
 
   const handleAddItem = () => {
@@ -22,11 +22,9 @@ function Contents() {
           text: text,
         },
       ];
-
-      setText('');
-
       return setItems(newItems);
     }
+    setText('');
   };
 
   return (
@@ -44,12 +42,13 @@ function Contents() {
         <Button
           onClick={() => {
             handleAddItem();
+            setText('');
           }}
         >
           등록
         </Button>
       </AddItemWrapper>
-      <ListBox items={items} />
+      <ListBox items={items} setItems={setItems} />
     </ContentsWrapper>
   );
 }
