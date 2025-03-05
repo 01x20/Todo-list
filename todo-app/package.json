@@ -22,8 +22,10 @@
     "start": "set PORT=9000 && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "http://01x20.github.io/Todo-list/",
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -50,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "eslint-plugin-simple-import-sort": "^12.1.1"
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "gh-pages": "^6.3.0"
   }
 }

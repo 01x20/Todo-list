@@ -44,7 +44,7 @@ function ListBox({ items, setItems }) {
 
   if (items) {
     return (
-      <>
+      <ScrollBox>
         {items.map((item, index) => (
           <React.Fragment key={index}>
             <TodoItemWrapper>
@@ -76,25 +76,36 @@ function ListBox({ items, setItems }) {
               <Button onClick={() => handleEdit(index)}>
                 <MdOutlineEditCalendar style={{ fontSize: '20px' }} />
               </Button>
-              <Button onClick={() => handleDelete(index)}>
+              <Button onClick={() => handleDelete(index)} className="delete">
                 <FaRegTrashAlt style={{ fontSize: '20px' }} />
               </Button>
             </TodoItemWrapper>
           </React.Fragment>
         ))}
-      </>
+      </ScrollBox>
     );
   }
 }
 
+const ScrollBox = styled.div`
+  overflow-y: auto;
+  height: 100%;
+  max-height: calc(100% - 65px);
+`;
+
 const TodoItemWrapper = styled.div`
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 0.8rem;
   align-items: center;
 
   &:last-child {
     margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    gap: 5px;
+    margin-bottom: 0.5rem;
   }
 `;
 
@@ -106,6 +117,7 @@ const InputText = styled.input`
   height: 20px;
   line-height: 20px;
   border: none;
+  border-radius: 0;
   border-bottom: 1px solid #666;
   outline: none;
   font-size: 0.9rem;
@@ -116,6 +128,10 @@ const InputText = styled.input`
   &.done {
     text-decoration: line-through;
     color: #999;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 0.3rem;
   }
 `;
 
@@ -130,6 +146,11 @@ const Button = styled.button`
   width: 20px;
   height: 20px;
   padding: 0;
+  color: #2962ff;
+
+  &.delete {
+    color: #ee1717;
+  }
 `;
 
 export default ListBox;

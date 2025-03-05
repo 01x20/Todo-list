@@ -4,4 +4,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   letter-spacing: -1px;
+  min-width: 375px;
+  overflow-x: auto;
 }

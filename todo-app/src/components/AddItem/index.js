@@ -43,5 +43,6 @@ const Button = styled.button`
   padding: 0 20px;
   font-size: 1rem;
   border-radius: 6px;
+  color: #111;
 `;
 export default AddItem;

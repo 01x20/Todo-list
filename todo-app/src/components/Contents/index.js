@@ -53,13 +53,18 @@ function Contents() {
 }
 
 const ContentsWrapper = styled.div`
-  padding: 0 40px;
+  padding: 1.5rem 1.3rem;
+  height: 84%;
 `;
 
 const AddItemWrapper = styled.div`
-  margin: 20px 0;
   display: flex;
+  margin-bottom: 1.5rem;
   gap: 10px;
+
+  @media (max-width: 768px) {
+    gap: 5px;
+  }
 `;
 
 const Input = styled.input`
@@ -73,6 +78,10 @@ const Input = styled.input`
   box-sizing: border-box;
   font-size: 1rem;
   flex: 1;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
 `;
 
 const Button = styled.button`
@@ -84,6 +93,11 @@ const Button = styled.button`
   padding: 0 20px;
   font-size: 1rem;
   border-radius: 6px;
+
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+    padding: 0 1rem;
+  }
 `;
 
 export default Contents;

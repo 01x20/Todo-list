@@ -19,13 +19,21 @@ const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px;
+  padding: 1.3rem;
   border-bottom: 1px solid #bebebe;
+
+  @media (max-width: 768px) {
+    padding: 1.3rem 2rem;
+  }
 `;
 
 const BoxTitle = styled.div`
   font-size: 1.4rem;
   font-weight: 700;
+
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 
 export default Title;

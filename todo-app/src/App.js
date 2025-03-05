@@ -22,11 +22,16 @@ const ContensWrapper = styled.div`
 `;
 
 const TodoListWrapper = styled.div`
-  min-width: 560px;
+  width: calc(100% - 80px);
+  max-width: 560px;
   background: #fff;
   height: 80%;
   border-radius: 30px;
   box-shadow: 0 1px 20px rgba(0, 0, 0, 0.02);
+
+  @media (max-width: 768px) {
+    width: calc(100% - 40px);
+  }
 `;
 
 export default App;
