@@ -10,21 +10,15 @@ function Contents() {
   const handleEnterAdd = (e) => {
     if (e.key === 'Enter') {
       handleAddItem();
+      setText('');
     }
-    setText('');
   };
 
   const handleAddItem = () => {
     if (text !== '') {
-      const newItems = [
-        ...items,
-        {
-          text: text,
-        },
-      ];
-      return setItems(newItems);
+      setItems([{ text }, ...items]);
+      setText('');
     }
-    setText('');
   };
 
   return (
