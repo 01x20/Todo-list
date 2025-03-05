@@ -5,12 +5,12 @@ function Title() {
   const month = new Date().getMonth() + 1;
   const date = new Date().getDate();
 
-  const CurrentDate = `${year} - ${month} - ${date}`;
+  const CurrentDate = `${year}-${month}-${date}`;
 
   return (
     <TitleWrapper>
-      <BoxTitle>Todo-List</BoxTitle>
       <BoxTitle>📆 {CurrentDate}</BoxTitle>
+      <BoxTitle>Todo-List</BoxTitle>
     </TitleWrapper>
   );
 }

@@ -93,6 +93,7 @@ const Button = styled.button`
   padding: 0 20px;
   font-size: 1rem;
   border-radius: 6px;
+  color: #111;
 
   @media (max-width: 768px) {
     font-size: 0.8rem;
