@@ -1,11 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
+import { getItem, setItem } from '../../lib/storage';
 import ListBox from '../ListBox';
 
 function Contents() {
   const [text, setText] = useState('');
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(getItem('todo') || []);
 
   const handleEnterAdd = (e) => {
     if (e.key === 'Enter') {
@@ -16,10 +17,14 @@ function Contents() {
 
   const handleAddItem = () => {
     if (text !== '') {
-      setItems([{ text }, ...items]);
+      setItems([{ text: text, checked: false }, ...items]);
       setText('');
     }
   };
+
+  useEffect(() => {
+    setItem('todo', items);
+  }, [items]);
 
   return (
     <ContentsWrapper>
