@@ -38,6 +38,7 @@ function ListBox({ items, setItems }) {
   };
 
   const handleDelete = (index) => {
+    alert('정말 삭제하시겠습니까?');
     setItems((prev) => prev.filter((_, i) => i !== index));
   };
 
