@@ -2,6 +2,8 @@
 
 React를 활용하여 오늘의 할 일 관리 페이지를 구현하였습니다
 
+*https://01x20.github.io/Todo-list/*
+
 
 # 🗂️ 프로젝트 소개
 
